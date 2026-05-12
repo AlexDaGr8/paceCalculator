@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Pace Calulator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Pace Calculator</h1>
+        <div class="grid">
+            <div class="row column-5">
+                <div class="label">Time:</div>
+                <div class="cell">
+                    <input
+                        id="time-hour"
+                        @change="updateLastModified('time')"  
+                        type="number" 
+                        v-model="time.hours" 
+                        placeholder="hour"
+                    />:
+                </div>
+                <div class="cell">
+                    <input
+                        id="time-minute"
+                        @change="updateLastModified('time')"  
+                        type="number" 
+                        v-model="time.minutes" 
+                        placeholder="min"
+                        min="0"
+                        max="59"
+                    />:
+                </div>
+                <div class="cell">
+                    <input
+                        id="time-second"
+                        @change="updateLastModified('time')"  
+                        type="number" 
+                        v-model="time.seconds" 
+                        placeholder="sec"
+                        min="0"
+                        max="59"
+                    />
+                </div>
+            </div>
+            <div class="row column-5">
+                <div class="label">Distance:</div>
+                <div class="cell">
+                    <input
+                        id="distance"
+                        @change="updateLastModified('distance')" 
+                        type="number" 
+                        v-model="distance.value" 
+                        placeholder="dist"
+                        class="distance"
+                    />
+                </div>
+                <div class="cell">
+                    <label for="units">Units:</label>
+                    <select id="units" v-model="distance.units" @change="updateUnits()">
+                        <option>Mi</option>
+                        <option>Km</option>
+                    </select>
+                </div>
+                <div class="cell">
+                    <select id="race" v-model="distance.race" @change="updateRace()">
+                        <option></option>
+                        <option value="marathon">Marathon</option>
+                        <option value="halfMarathon">Half Marathon</option>
+                        <option value="tenK">10k</option>
+                        <option value="fiveK">5k</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row column-5">
+                <div class="label">Pace:</div>
+                <div class="cell">
+                    <input 
+                        id="pace-hour"
+                        @change="updateLastModified('pace')" 
+                        type="number" 
+                        v-model="pace.hours" 
+                        placeholder="hour"
+                    />:
+                </div>
+                <div class="cell">
+                    <input 
+                        id="pace-minute"
+                        @change="updateLastModified('pace')" 
+                        type="number" 
+                        v-model="pace.minutes" 
+                        placeholder="min"
+                        min="0"
+                        max="59"
+                    />:
+                </div>
+                <div class="cell">
+                    <input 
+                        id="pace-second"
+                        @change="updateLastModified('pace')" 
+                        type="number" 
+                        v-model="pace.seconds" 
+                        placeholder="sec"
+                        min="0"
+                        max="59"
+                    />
+                </div>
+                <div>per {{ distance.units }}</div>
+            </div>
+            <div class="row column-6">
+                <div class="span-2 offset-2">
+                    <button @click="calculate()">Calculate</button>
+                </div>
+                <div class="span-2">
+                    <button @click="reset()">Reset</button>
+                </div>
+            </div>
+        </div>
+
+        <h3>Create by: Alexander Hinton</h3>
+        <h4>Enjoy more at <a href="https://alexdagr8.com">alexdagr8.com</a></h4>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>

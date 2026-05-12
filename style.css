@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap");
+#app,
+input,
+button {
+  font-family: "Inconsolata", monospace;
+  font-size: 1.2em;
+}
+#app h1,
+#app h3,
+#app h4,
+input h1,
+button h1 {
+  text-align: center;
+}
+#app input,
+#app button,
+input input,
+input button,
+button input,
+button button {
+  font-size: 1em;
+}
+
+.grid {
+  width: 90vw;
+  margin: 5% auto;
+}
+.grid .row {
+  display: grid;
+  grid-gap: 5px;
+  width: 100%;
+  margin: 5px 0;
+}
+.grid .row .span-2 {
+    grid-column: span 2;
+    
+    &.offset-2 {
+        grid-column: 2/span 2;
+    }
+}
+.grid .row.column-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+.grid .row.column-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+.grid .row .label {
+  text-align: right;
+  align-self: center;
+}
+.grid .row button {
+  width: 100%;
+  appearance: none;
+  outline: none;
+  border: solid 1px;
+  border-radius: 3px;
+  padding: 4px 0;
+  background: #f0f0f0;
+  position: relative;
+  transform: translate(1px, 0px);
+  transition: all 0.1s linear;
+}
+.grid .row button:active {
+  transform: translate(-1px, 1px);
+}
+.grid .row button:hover {
+  background: rgba(240, 240, 240, 0.7);
+}
+.grid .row input {
+  width: 75%;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 400px) {
+    #app {
+        & .grid .row.column-6,
+        & .grid .row.column-5 {
+            grid-template-columns: repeat(3, 1fr);
+            & .label {
+                grid-column: span 3;
+                text-align: left;
+            }
+
+            & .span-2.offset-2,
+            & .span-2 {
+                grid-column: span 3;
+            }
+        } 
+    }
+}
